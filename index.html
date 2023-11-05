@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Control de LED y Potenciómetro</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Control de LED</h1>
+    <button id="encender">Encender LED</button>
+    <button id="apagar">Apagar LED</button>
+    
+    <h2>Lectura del potenciómetro:</h2>
+    <p id="potValue">Valor del potenciómetro: </p>
+    
+    <script>
+        $(document).ready(function() {
+            $("#encender").click(function() {
+                $.get('http://tudominio.com/encender');  // Cambia "tudominio.com" por tu dominio
+            });
+
+            $("#apagar").click(function() {
+                $.get('http://tudominio.com/apagar');  // Cambia "tudominio.com" por tu dominio
+            });
+
+            function obtenerValorPotenciometro() {
+                $.get('http://tudominio.com/leer_potenciometro', function(data) {  // Cambia "tudominio.com" por tu dominio
+                    $("#potValue").text('Valor del potenciómetro: ' + data);
+                });
+            }
+
+            setInterval(obtenerValorPotenciometro, 2000);
+        });
+    </script>
+</body>
+</html>
